@@ -5,6 +5,7 @@ class URL_shortener:
   def __init__(self):
     self.short_to_url = {}
     self.url_to_short = {}
+    self.prefix = "h**ps://shor.ty/"
 
   def _generate_short(self):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6))
@@ -17,15 +18,16 @@ class URL_shortener:
 
   def shorten(self, url):
     if url in self.url_to_short:
-      return self.url_to_short[url]
+      return self.prefix + self.url_to_short[url]
     else:
       short = self._generate_unused_short()
       self.short_to_url[short] = url
       self.url_to_short[url] = short
-    return short
+    return self.prefix + short
 
-  def restore(self, short):
-    return self.short_to_url.get(short, None)
+  def restore(self, url):
+    suffix = url[-6:]
+    return self.short_to_url.get(suffix, None)
 
 # Test
 url = URL_shortener()

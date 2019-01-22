@@ -28,17 +28,3 @@ class URL_shortener:
   def restore(self, url):
     suffix = url[-6:]
     return self.short_to_url.get(suffix, None)
-
-# Test
-url = URL_shortener()
-
-# Shorten URL
-url_short = url.shorten("https://github.com/implse")
-print(url_short)
-
-# Restore URL
-url_restore = url.restore(url_short)
-print(url_restore)
-
-# Shorten same URL twice(re-use)
-print(url.shorten("https://github.com/implse"))
